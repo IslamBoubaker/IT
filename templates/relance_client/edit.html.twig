@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit RelanceClient{% endblock %}
+
+{% block body %}
+    <h1>Edit RelanceClient</h1>
+
+    {{ include('relance_client/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_relance_client_index') }}">back to list</a>
+
+    {{ include('relance_client/_delete_form.html.twig') }}
+{% endblock %}

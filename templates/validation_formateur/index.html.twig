@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Validation Formateur{% endblock %}
+
+{% block body %}
+    <h1>Validation d'un formateur</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">{{ message }}</div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+
+    {{ form_start(form) }}
+        {{ form_row(form.formateur) }}
+        {{ form_row(form.dateValidation) }}
+        {{ form_row(form.techniquementValide) }}
+        {{ form_row(form.pedagogiquementValide) }}
+        {{ form_row(form.commentaire) }}
+        {{ form_row(form.premiereFois) }}
+        <button class="btn btn-primary">Valider</button>
+    {{ form_end(form) }}
+{% endblock %}

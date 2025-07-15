@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RelanceClient{% endblock %}
+
+{% block body %}
+    <h1>RelanceClient</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ relance_client.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ relance_client.date ? relance_client.date|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Motif</th>
+                <td>{{ relance_client.motif }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_relance_client_index') }}">back to list</a>
+
+    <a href="{{ path('app_relance_client_edit', {'id': relance_client.id}) }}">edit</a>
+
+    {{ include('relance_client/_delete_form.html.twig') }}
+{% endblock %}

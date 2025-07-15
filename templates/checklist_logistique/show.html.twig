@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ChecklistLogistique{% endblock %}
+
+{% block body %}
+    <h1>ChecklistLogistique</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ checklist_logistique.id }}</td>
+            </tr>
+            <tr>
+                <th>ReservationSalle</th>
+                <td>{{ checklist_logistique.reservationSalle ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>MachinesInstallees</th>
+                <td>{{ checklist_logistique.machinesInstallees ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>FormateurConfirme</th>
+                <td>{{ checklist_logistique.formateurConfirme ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>SupportsImprimes</th>
+                <td>{{ checklist_logistique.supportsImprimes ? 'Yes' : 'No' }}</td>
+            </tr>
+            <tr>
+                <th>ConvocationsEnvoyees</th>
+                <td>{{ checklist_logistique.convocationsEnvoyees ? 'Yes' : 'No' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_checklist_logistique_index') }}">back to list</a>
+
+    <a href="{{ path('app_checklist_logistique_edit', {'id': checklist_logistique.id}) }}">edit</a>
+
+    {{ include('checklist_logistique/_delete_form.html.twig') }}
+{% endblock %}

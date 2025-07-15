@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}MonitoringSession index{% endblock %}
+
+{% block body %}
+    <h1>MonitoringSession index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>EtatSalle</th>
+                <th>EtatSupports</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for monitoring_session in monitoring_sessions %}
+            <tr>
+                <td>{{ monitoring_session.id }}</td>
+                <td>{{ monitoring_session.etatSalle }}</td>
+                <td>{{ monitoring_session.etatSupports }}</td>
+                <td>
+                    <a href="{{ path('app_monitoring_session_show', {'id': monitoring_session.id}) }}">show</a>
+                    <a href="{{ path('app_monitoring_session_edit', {'id': monitoring_session.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_monitoring_session_new') }}">Create new</a>
+{% endblock %}

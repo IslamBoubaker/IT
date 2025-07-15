@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ChecklistLogistique{% endblock %}
+
+{% block body %}
+    <h1>Create new ChecklistLogistique</h1>
+
+    {{ include('checklist_logistique/_form.html.twig') }}
+
+    <a href="{{ path('app_checklist_logistique_index') }}">back to list</a>
+{% endblock %}

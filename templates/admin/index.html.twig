@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin  IT-Training{% endblock %}
+
+{% block body %}
+    <h1>Admin  - Tableau de bord</h1>
+
+    <ul>
+        <li><a href="{{ path('app_formation_index') }}">📘 Formations</a></li>
+        <li><a href="{{ path('app_theme_index') }}">📂 Thèmes</a></li>
+        <li><a href="{{ path('app_sous_theme_index') }}">📁 Sous-thèmes</a></li>
+        <li><a href="{{ path('app_session_index') }}">📅 Sessions</a></li>
+        <li><a href="{{ path('app_stagiaire_index') }}">👤 Stagiaires</a></li>
+        <li><a href="{{ path('app_formateur_index') }}">👨‍🏫 Formateurs</a></li>
+        <li><a href="{{ path('app_inscription_index') }}">✍️ Inscriptions</a></li>
+        <li><a href="{{ path('app_evaluation_index') }}">📝 Évaluations</a></li>
+        <li><a href="{{ path('app_note_index') }}">⭐ Notes</a></li>
+        <li><a href="{{ path('app_checklist_logistique_index') }}">🧾 Logistique</a></li>
+        <li><a href="{{ path('app_monitoring_session_index') }}">📊 Monitoring</a></li>
+        <li><a href="{{ path('app_alerte_index') }}">🚨 Alertes</a></li>
+        <li><a href="{{ path('app_commercial_index') }}">📈 Commercial</a></li>
+        <li><a href="{{ path('app_relance_client_index') }}">🔁 Relances</a></li>
+    </ul>
+{% endblock %}

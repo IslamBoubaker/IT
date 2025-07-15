@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New MonitoringSession{% endblock %}
+
+{% block body %}
+    <h1>Create new MonitoringSession</h1>
+
+    {{ include('monitoring_session/_form.html.twig') }}
+
+    <a href="{{ path('app_monitoring_session_index') }}">back to list</a>
+{% endblock %}

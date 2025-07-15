@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RelanceClient index{% endblock %}
+
+{% block body %}
+    <h1>RelanceClient index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Motif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for relance_client in relance_clients %}
+            <tr>
+                <td>{{ relance_client.id }}</td>
+                <td>{{ relance_client.date ? relance_client.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ relance_client.motif }}</td>
+                <td>
+                    <a href="{{ path('app_relance_client_show', {'id': relance_client.id}) }}">show</a>
+                    <a href="{{ path('app_relance_client_edit', {'id': relance_client.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_relance_client_new') }}">Create new</a>
+{% endblock %}

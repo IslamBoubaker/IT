@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ChecklistLogistique index{% endblock %}
+
+{% block body %}
+    <h1>ChecklistLogistique index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>ReservationSalle</th>
+                <th>MachinesInstallees</th>
+                <th>FormateurConfirme</th>
+                <th>SupportsImprimes</th>
+                <th>ConvocationsEnvoyees</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for checklist_logistique in checklist_logistiques %}
+            <tr>
+                <td>{{ checklist_logistique.id }}</td>
+                <td>{{ checklist_logistique.reservationSalle ? 'Yes' : 'No' }}</td>
+                <td>{{ checklist_logistique.machinesInstallees ? 'Yes' : 'No' }}</td>
+                <td>{{ checklist_logistique.formateurConfirme ? 'Yes' : 'No' }}</td>
+                <td>{{ checklist_logistique.supportsImprimes ? 'Yes' : 'No' }}</td>
+                <td>{{ checklist_logistique.convocationsEnvoyees ? 'Yes' : 'No' }}</td>
+                <td>
+                    <a href="{{ path('app_checklist_logistique_show', {'id': checklist_logistique.id}) }}">show</a>
+                    <a href="{{ path('app_checklist_logistique_edit', {'id': checklist_logistique.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_checklist_logistique_new') }}">Create new</a>
+{% endblock %}

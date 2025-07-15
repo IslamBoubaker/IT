@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commercial{% endblock %}
+
+{% block body %}
+    <h1>Commercial</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commercial.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ commercial.nom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ commercial.email }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ commercial.telephone }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commercial_index') }}">back to list</a>
+
+    <a href="{{ path('app_commercial_edit', {'id': commercial.id}) }}">edit</a>
+
+    {{ include('commercial/_delete_form.html.twig') }}
+{% endblock %}

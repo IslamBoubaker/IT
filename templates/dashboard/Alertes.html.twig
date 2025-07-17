@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alertes - IT-Training ERP{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="mb-4">🔔 Alertes</h2>
+
+    <!-- 🎯 Filtre par session -->
+    <form method="get" class="row row-cols-lg-auto g-3 align-items-center mb-4">
+        <div class="col-12">
+            <select name="session" class="form-select">
+                <option value="">📋 Toutes les sessions</option>
+                {% for session in sessions %}
+                    <option value="{{ session.id }}" {% if app.request.get('session') == session.id %}selected{% endif %}>
+                        {{ session.intitule }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-outline-primary">
+                🔍 Filtrer
+            </button>
+        </div>
+        <div class="col-12">
+            <a href="{{ path('dashboard_alertes_export', {session: app.request.get('session')}) }}" class="btn btn-outline-success">
+                ⬇️ Export CSV
+            </a>
+        </div>
+    </form>
+
+    {% if alertes is empty %}
+        <div class="alert alert-info">Aucune alerte trouvée pour cette session.</div>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Message</th>
+                        <th>Session</th>
+                        <th>Niveau</th>
+                        <th>Créée le</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for alerte in alertes %}
+                        <tr>
+                            <td>{{ alerte.id }}</td>
+                            <td class="text-start">{{ alerte.message }}</td>
+                            <td>
+                                {{ alerte.session ? alerte.session.intitule : 'N/A' }}
+                            </td>
+                            <td>
+                                {% if alerte.niveau == 'critique' %}
+                                    <span class="badge bg-danger">Critique</span>
+                                {% else %}
+                                    <span class="badge bg-secondary">{{ alerte.niveau|capitalize }}</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ alerte.createdAt ? alerte.createdAt|date('d/m/Y H:i') : '-' }}</td>
+                            <td>
+                                <form method="post" action="{{ path('alerte_delete', {id: alerte.id}) }}" onsubmit="return confirm('Supprimer cette alerte ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ alerte.id) }}">
+                                    <button class="btn btn-sm btn-outline-danger" title="Supprimer">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

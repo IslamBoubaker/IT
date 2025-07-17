@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard Logistique{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="mb-4">📊 Dashboard Logistique</h1>
+
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Intitulé</th>
+                    <th>Date</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for session in sessions %}
+                    <tr>
+                        <td>{{ session.id }}</td>
+                        <td>{{ session.intitule }}</td>
+                        <td>{{ session.date ? session.date|date('d/m/Y') : 'Non définie' }}</td>
+                        <td>{{ session.statut|capitalize }}</td>
+                    </tr>
+                {% else %}
+                    <tr><td colspan="4" class="text-center">Aucune session</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

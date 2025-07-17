@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard - IT-Training ERP{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="mb-4">📊 Tableau de bord</h2>
+
+    <div class="row g-4">
+        <!-- Sessions planifiées -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card shadow-sm border-0 text-white bg-primary">
+                <div class="card-body">
+                    <h6 class="card-title">📅 Sessions planifiées</h6>
+                    <h3 class="fw-bold">{{ sessionsPlanifiees }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alertes critiques -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card shadow-sm border-0 text-white bg-danger">
+                <div class="card-body">
+                    <h6 class="card-title">🚨 Alertes critiques</h6>
+                    <h3 class="fw-bold">{{ alertesCritiques }}</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Taux de remplissage -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card shadow-sm border-0 text-white bg-info">
+                <div class="card-body">
+                    <h6 class="card-title">📊 Taux de remplissage</h6>
+                    <h3 class="fw-bold">{{ tauxRemplissage }}%</h3>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prochaine session -->
+        <div class="col-md-6 col-xl-3">
+            <div class="card shadow-sm border-0 text-white bg-success">
+                <div class="card-body">
+                    <h6 class="card-title">🔜 Prochaine session</h6>
+                    {% if prochaineSession %}
+                        <div class="fw-bold">
+                            {{ prochaineSession.intitule }}<br>
+                            <small>{{ prochaineSession.date|date('d/m/Y H:i') }}</small>
+                        </div>
+                    {% else %}
+                        <p class="mb-0">Aucune à venir</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="text-end">
+        <a href="{{ path('dashboard_alertes') }}" class="btn btn-outline-secondary">
+            🔔 Consulter les alertes
+        </a>
+    </div>
+</div>
+{% endblock %}

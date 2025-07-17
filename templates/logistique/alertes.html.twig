@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Alertes Formateurs{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1>🔔 Alertes de validation des formateurs</h1>
+
+    {% if alertes is empty %}
+        <div class="alert alert-info mt-4">Aucune alerte à traiter.</div>
+    {% else %}
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Session</th>
+                    <th>Formateur</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alerte in alertes %}
+                    <tr>
+                        <td>{{ alerte.id }}</td>
+                        <td>{{ alerte.session.intitule }}</td>
+                        <td>{{ alerte.session.formateur.nom }} {{ alerte.session.formateur.prenom }}</td>
+                        <td>
+                            <a href="{{ path('logistique_valider_formateur', {id: alerte.id}) }}"
+                               class="btn btn-success btn-sm"
+                               onclick="return confirm('Valider ce formateur ?')">
+                                ✅ Valider
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+</div>
+{% endblock %}

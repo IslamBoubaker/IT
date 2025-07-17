@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+{% block title %}Checklists logistiques{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h2 class="mb-4">📦 Checklists logistiques</h2>
+
+    {% if checklists is empty %}
+        <div class="alert alert-info">Aucune checklist logistique générée pour l’instant.</div>
+    {% else %}
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Session</th>
+                        <th>Date</th>
+                        <th>Lieu</th>
+                        <th>Checklist</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for checklist in checklists %}
+                        <tr>
+                            <td>{{ checklist.session.intitule }}</td>
+                            <td>{{ checklist.session.date|date('d/m/Y') }}</td>
+                            <td>{{ checklist.session.lieu }}</td>
+                            <td>
+                                {% if checklist.estComplete %}
+                                    ✅ Complète
+                                {% else %}
+                                    ❌ Incomplète
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="#" class="btn btn-sm btn-outline-primary disabled">
+                                    📝 Voir
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
